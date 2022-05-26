@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package com.lfh;
+
+option java_multiple_files = true;
+
+message LargeRequest{
+  int64 field_a = 1;
+  int64 field_b = 2;
+  string field_c = 3;
+  string field_d = 4;
+  bool field_e = 5;
+  bool field_f = 6;
+  float field_g = 7;
+  float field_h = 8;
+  repeated LargeNested list_largeNestedRequest = 9;
+  repeated OtherLargeNested list_otherLargeNestedRequest = 10;
+}
+message LargeNested{
+  int64 field_a = 1;
+  int64 field_b = 2;
+  string field_c = 3;
+  string field_d = 4;
+  bool field_e = 5;
+  bool field_f = 6;
+  float field_g = 7;
+  float field_h = 8;
+  double field_i = 9;
+  double field_j = 10;
+  int64 field_k = 11;
+  int64 field_l = 12;
+  string field_m = 13;
+  string field_n = 14;
+  bool field_o = 15;
+  bool field_p = 16;
+  float field_q = 17;
+  float field_r = 18;
+  double field_s = 19;
+  double field_t = 20;
+}
+message OtherLargeNested{
+  int64 field_a = 1;
+  int64 field_b = 2;
+  string field_c = 3;
+  string field_d = 4;
+  bool field_e = 5;
+  bool field_f = 6;
+  float field_g = 7;
+  float field_h = 8;
+  double field_i = 9;
+  double field_j = 10;
+  int64 field_k = 11;
+  int64 field_l = 12;
+  string field_m = 13;
+  string field_n = 14;
+  bool field_o = 15;
+  bool field_p = 16;
+  float field_q = 17;
+  float field_r = 18;
+  double field_s = 19;
+  double field_t = 20;
+}
+message LargeResponse{
+  int64 field_a = 1;
+  int64 field_b = 2;
+  string field_c = 3;
+  string field_d = 4;
+  bool field_e = 5;
+  bool field_f = 6;
+  float field_g = 7;
+  float field_h = 8;
+  repeated LargeNested list_largeNestedResponse = 9;
+  repeated OtherLargeNested list_otherLargeNestedResponse = 10;
+}
+
+service LargeService{
+  //Unary Large Request Response Call
+  rpc unaryLargeCall(LargeRequest) returns(LargeResponse);
+  //BiDi Large Stream
+  rpc streamLarge(stream LargeRequest) returns(stream LargeResponse);
+}
