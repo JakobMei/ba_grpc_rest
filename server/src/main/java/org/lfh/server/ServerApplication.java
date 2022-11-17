@@ -2,12 +2,11 @@ package org.lfh.server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+//import io.grpc.protobuf.services.ProtoReflectionService;
 import org.lfh.server.controller.grpc.LargeObjectServiceImpl;
 import org.lfh.server.controller.grpc.PingPongServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 
 import java.io.IOException;
 
@@ -25,6 +24,7 @@ public class ServerApplication {
         Server server = ServerBuilder.forPort(3000)
                 .addService(new PingPongServiceImpl())
                 .addService(new LargeObjectServiceImpl())
+                //.addService(ProtoReflectionService.newInstance()) wanted to add server reflection but apparently that isnt supported on m1 macs lol
                 .build();
 
         server.start();
